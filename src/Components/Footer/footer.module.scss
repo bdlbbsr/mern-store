@@ -1,0 +1,53 @@
+@import "../../styles/global.scss";
+
+.footer {
+  background-color: #001a30;
+  color: $white;
+  min-height: 60px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.footerCnr{display: flex; justify-content: space-between;}
+
+.navLink {
+  font-size: 22px;
+  line-height: 24px;
+  text-decoration: none;
+  color: $white;
+  font-weight: 600;
+
+  &:hover {
+    color: $black;
+  }
+}
+
+//menu buttons design
+.menuLink {
+  font-size: $font-size-base;
+  font-weight: 400;
+  line-height: 22px;
+  margin-left: 30px;
+  background-image: linear-gradient(
+    to right,
+    $nevyBlue,
+    $nevyBlue 50%,
+    $white 50%
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  -webkit-background-clip: text;
+  transition: all 0.3s ease-in-out;
+  -webkit-text-fill-color: transparent;
+
+  &:hover {
+    background-position: 0;
+  }
+}

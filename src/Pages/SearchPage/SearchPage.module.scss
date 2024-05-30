@@ -1,0 +1,36 @@
+@import "../../styles/global.scss";
+
+
+
+
+.cartCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+   border-bottom: 1px solid #dbdbdb;
+  margin-bottom: 30px;
+  border-radius: 4px;
+  transition: all 0.4s ease-in-out;
+
+  div:first-of-type{min-width: 10%;}
+  div:nth-of-type(2){min-width:40%;}
+  div:nth-of-type(3){min-width: 15%;}
+  div:nth-of-type(4){min-width: 20%;}
+  div:nth-of-type(5){min-width: 15%;}
+
+  &:hover {
+    transform: scale(1.005);
+    transform: all 0.4s ease-in-out;
+  }
+}
+
+@media (max-width: $media-md) {
+  .errorPage {
+    :global {
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
