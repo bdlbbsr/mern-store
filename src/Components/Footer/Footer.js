@@ -16,11 +16,11 @@ const Footer = () => {
     //   id: 5,
     //   path: "/products",
     // },
-    {
-      name: "About Us",
-      id: 2,
-      path: "/about",
-    },
+    // {
+    //   name: "About Us",
+    //   id: 2,
+    //   path: "/about",
+    // },
     // {
     //   name: "Privacy",
     //   id: 3,
