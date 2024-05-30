@@ -116,16 +116,23 @@ const SearchPage = () => {
               <select value={minPrice} onChange={(e) => setMinPrice(e.target.value)}>
                 <option value="">Select field</option>
                 <option value="5000">5000</option>
-                <option value="price">Price</option>
-                {/* Add more fields as needed */}
+                <option value="10000">10000</option>
+                <option value="15000">15000</option>
+                <option value="20000">20000</option>
+                
               </select>
             </label>
             <label>
               <h6 className="mt-2">Max:</h6>
               <select value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)}>
                 <option value="">Select order</option>
+                <option value="10000">10000</option>
+                <option value="20000">20000</option>
+                <option value="30000">30000</option>
                 <option value="50000">50000</option>
-                <option value="desc">Descending</option>
+                <option value="80000">80000</option>
+                <option value="99000">99000</option>
+                
               </select>
             </label>
           </div>
