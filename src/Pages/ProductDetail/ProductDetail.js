@@ -20,7 +20,7 @@ import styles from "./productdetail.module.scss";
 import ProductSlider from "../../Components/Slider/ProductSlider";
 import SimilarProducts from "../../Components/Slider/SimilarProducts";
 import ErrorPage from "../ErrorPage/ErrorPage"
-const api_base_URL = "http://localhost:8080/";
+const api_base_URL = "https://mern-store-backend-sigma.vercel.app/";
 
 const ProductDetail = () => {
   const navigate = useNavigate();

@@ -11,7 +11,7 @@ import usePost from '../../Services/usePost';
 import styles from "../admin.module.css";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 const apiUrl = "/home-slider";
-const api_base_URL = "http://localhost:8080/api";
+const api_base_URL = "https://mern-store-backend-sigma.vercel.app/api";
 
 
 const AddHeaderSlider = () => {
@@ -160,7 +160,7 @@ const AddHeaderSlider = () => {
 
       {getResponseCall && getResponseCall.map((item, i) => (
         <Row key={i}>
-          <Col><img src={`http://localhost:8080/${item.image}`} height={50} /></Col>
+          <Col><img src={`https://mern-store-backend-sigma.vercel.app/${item.image}`} height={50} /></Col>
           <Col>{item.caption}</Col>
           <Col>{item.link}</Col>
           <Col> <AiOutlineEdit size={30} onClick={() => editItem(i)} /> <AiOutlineDelete size={30} onClick={() => deleteItem(i)} /> </Col>

@@ -3,7 +3,7 @@ import useFetchByCall from '../../Services/useFetchByCall';
 import Loader from "../Loader/Loader";
 import styles from "./slider.module.scss";
 import ImageGallery from "react-image-gallery";
-const api_base_URL = 'http://localhost:8080';
+const api_base_URL = 'https://mern-store-backend-sigma.vercel.app';
 
 const ProductSlider = (props) => {
   const { getDataByCall, getResponseCall, error, loading } = useFetchByCall();

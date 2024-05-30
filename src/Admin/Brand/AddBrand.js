@@ -12,7 +12,7 @@ import styles from "../admin.module.css";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { useNavigate} from "react-router-dom";
 const apiUrl = "/brand";
-const api_base_URL = "http://localhost:8080/api";
+const api_base_URL = "https://mern-store-backend-sigma.vercel.app/api";
 
 
 const AddBrand = () => {
@@ -163,7 +163,7 @@ const AddBrand = () => {
         <Row key={i}>
           <Col>{item.name}</Col>
           <Col>{item.description}</Col>
-          <Col><img src={`http://localhost:8080/${item.logo}`} width={50}/></Col>
+          <Col><img src={`https://mern-store-backend-sigma.vercel.app/${item.logo}`} width={50}/></Col>
           <Col> <AiOutlineEdit size={30} onClick={() => editItem(item._id)} /> <AiOutlineDelete size={30} onClick={() => deleteItem(item._id)} /> </Col>
         </Row>
       ))}

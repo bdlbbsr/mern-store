@@ -12,7 +12,7 @@ import Loader from "../Loader/Loader";
 import useFetch from "../../Services/useFetch";
 import styles from "./productdetail.module.scss";
 import ProductSlider from "../Slider/ProductSlider";
-const api_base_URL='http://localhost:8080/';
+const api_base_URL='https://mern-store-backend-sigma.vercel.app/';
 
 const ProductDetail = () => {
   const navigate = useNavigate();

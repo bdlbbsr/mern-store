@@ -6,7 +6,7 @@ import useFetch from '../../Services/useFetch';
 import styles from "./SearchPage.module.scss";
 import Pagination from '../../Components/Pagination/Pagination';
 
-const api_base_URL = 'http://localhost:8080';
+const api_base_URL = 'https://mern-store-backend-sigma.vercel.app';
 
 const SearchPage = () => {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const SearchPage = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.post(`http://localhost:8080/api/search?page=${page}&pageSize=${pageSize}`, {
+      const response = await axios.post(`https://mern-store-backend-sigma.vercel.app/api/search?page=${page}&pageSize=${pageSize}`, {
         query: state,
         category,
         brand: brands.length > 0 ? brands : undefined,

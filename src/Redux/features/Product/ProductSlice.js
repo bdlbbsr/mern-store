@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { STATUS } from "../../../constants/Status";
 
-const api_base_URL = "http://localhost:8080/api";
+const api_base_URL = "https://mern-store-backend-sigma.vercel.app/api";
 const apiUrl = "/products";
 // const api_base_URL = "https://fakestoreapi.com";
 // const apiUrl = "/products";

@@ -182,7 +182,7 @@ const Cart = () => {
                         className={styles.cartCard}>
                         <div>
                           <img
-                            src={`http://localhost:8080/${product.thumbnail}`}
+                            src={`https://mern-store-backend-sigma.vercel.app/${product.thumbnail}`}
                             alt="product"
                             width="50px"
                           />

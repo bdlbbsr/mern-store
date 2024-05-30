@@ -1,4 +1,4 @@
-const api_base_URL = "http://localhost:8080/api";
+const api_base_URL = "https://mern-store-backend-sigma.vercel.app/api";
 
 export function createUser(userData) {
   return new Promise(async (resolve) => {

@@ -12,7 +12,7 @@ import usePatch from '../../Services/usePatch';
 import usePost from '../../Services/usePost';
 import useFetch from '../../Services/useFetch';
 
-const api_base_URL = "http://localhost:8080/api";
+const api_base_URL = "https://mern-store-backend-sigma.vercel.app/api";
 const apiUrl = "/products";
 
 const AddProduct = () => {
@@ -120,7 +120,7 @@ const AddProduct = () => {
         const imageUploadPromises = images.map(image => {
           const imageFormData = new FormData();
           imageFormData.append('file', image);
-          return axios.post('http://localhost:8080/api/upload', imageFormData, {
+          return axios.post('https://mern-store-backend-sigma.vercel.app/api/upload', imageFormData, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
@@ -239,7 +239,7 @@ const AddProduct = () => {
 
       {getResponseCall && getResponseCall.map((item, i) => (
         <Row key={i}>
-          <Col><img src={`http://localhost:8080/${item.thumbnail}`} width={50} /></Col>
+          <Col><img src={`https://mern-store-backend-sigma.vercel.app/${item.thumbnail}`} width={50} /></Col>
           <Col>{item.name}</Col>
           <Col>{item.price}</Col>
           <Col>{item.description}</Col>

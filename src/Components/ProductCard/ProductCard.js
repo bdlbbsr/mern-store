@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "./productCard.module.scss";
 
-const api_base_URL='http://localhost:8080/';
+const api_base_URL='https://mern-store-backend-sigma.vercel.app/';
 
 const ProductCard = ({ product }) => {
   const title = product?.name.slice(0, 20);

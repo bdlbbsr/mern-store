@@ -19,7 +19,7 @@ const Profile = () => {
     : {};
   const token = userDtl.token;
   const userId = userDtl.userId;
-  const api = `http://localhost:8080/api/profile?userId=${userId}`;
+  const api = `https://mern-store-backend-sigma.vercel.app/api/profile?userId=${userId}`;
   const [formdata, setFormData] = useState();
   const [addNewAdd, setaddNewAdd] = useState(false);
   const { patchData, getPatchResponse, error, loading } = usePatch();
