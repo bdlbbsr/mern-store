@@ -2,10 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { STATUS } from "../../../constants/Status";
 
-const api_base_URL = "https://mern-store-backend-sigma.vercel.app/api";
-const apiUrl = "/products";
-// const api_base_URL = "https://fakestoreapi.com";
-// const apiUrl = "/products";
+const apiUrl = "/api/products";
 
 const initialState = {
   status: "",
@@ -40,7 +37,7 @@ const productSlice = createSlice({
 //fetching product using build in thunk on toolkit
 
 export const fetchProducts = createAsyncThunk("fetch/prodcuts", async () => {
-  const data = await axios.get(`${api_base_URL}${apiUrl}`).then((res) => res.data);
+  const data = await axios.get(`${process.env.REACT_APP_API_BASE_URL}${apiUrl}`).then((res) => res.data);
   return data.data;
 });
 

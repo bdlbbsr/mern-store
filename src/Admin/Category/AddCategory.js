@@ -12,7 +12,7 @@ import styles from "../admin.module.css";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import * as Yup from 'yup';
 import {useError, useSubmitError} from '../../Services/useError'
-const apiUrl = '/category';
+const apiUrl = '/api/category';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("This is required")
@@ -147,7 +147,7 @@ const AddCategory = () => {
         <Col>Action</Col>
       </Row>
 
-      {getResponseCall && getResponseCall.map((item, i) => (
+      {getResponseCall && getResponseCall?.data.map((item, i) => (
         <Row key={i}>
           <Col>{item.name}</Col>
           <Col>{item.description}</Col>

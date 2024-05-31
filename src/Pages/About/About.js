@@ -1,31 +1,39 @@
-import React from "react";
-import styles from "./about.module.scss";
+import React, { useEffect, useMemo, useCallback  } from "react";
 import { Container, Row } from "react-bootstrap";
+import useFetchByCall from "../../Services/useFetchByCall";
 
 const About = () => {
+  const { getDataByCall, getResponseCall, error, loading } = useFetchByCall()
+  const aboutUrl = '/api/about'
+  const UI_Developer = 5;
+  const Project_Manager = 9;
+  const Frontend_Developer = 3;
+
+  const myExp = (a, b, c) => {
+  console.log("function called")
+    return a+b+c
+
+  }
+
+const memoizedMyExp = useMemo(() => myExp(UI_Developer, Project_Manager, Frontend_Developer), [Frontend_Developer]);
+
+const expensiveFunction = useCallback(() => {
+  // Do something expensive here
+  getDataByCall(aboutUrl)
+}, [aboutUrl]);
+
+  useEffect(()=>{
+    expensiveFunction()
+  },[])
+
+
   return (
      
       <Container className="containerWrapper">
         <Row>
-          <h1 className="py-3 text-center">About Us</h1>
+          <h2 className="py-3 text-center">{getResponseCall?.title} <span className="fs-5">(Total IT Experience {memoizedMyExp} years)</span></h2>
           <p>
-            Redux Commerce Limited is a leading Ecommerce company established in
-            June 2022. Main focus of this company is to develop product as a
-            Product, by maintaining the security and global standard of
-            New-Ecommerce-Era. The main products of the company include Exchange
-            Broker/TREC holder's Back-Office Management System, Cloud based
-            Point of Sale and Enterprise Resource Planning solution, e-Commerce
-            Solution and Hotel Owners' Property Management System etc. The
-            management team of this company are the ICT Industry leaders having
-            more than 25 years experience in ICT arena.
-          </p>
-          <p>
-            The main products of the company include Exchange Broker/TREC
-            holder's Back-Office Management System, Cloud based Point of Sale
-            and Enterprise Resource Planning solution, e-Commerce Solution and
-            Hotel Owners' Property Management System etc. The management team of
-            this company are the ICT Industry leaders having more than 25 years
-            experience in ICT arena.
+          {getResponseCall?.content}
           </p>
         </Row>
       </Container>

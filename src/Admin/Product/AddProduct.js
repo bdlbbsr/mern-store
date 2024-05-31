@@ -12,8 +12,8 @@ import usePatch from '../../Services/usePatch';
 import usePost from '../../Services/usePost';
 import useFetch from '../../Services/useFetch';
 
-const api_base_URL = "https://mern-store-backend-sigma.vercel.app/api";
-const apiUrl = "/products";
+
+const apiUrl = "/api/products";
 
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -25,8 +25,8 @@ const AddProduct = () => {
   const { deleteData, getDeleteResponse, error: deleteError, loading: deleteLoading } = useDelete();
   const { getSingleData, getSingleResponse, error: fetchSingleErr, loading: fetchSingleLoad } = useFetchSingle();
 
-  const { getResponse, error:catErr, loading:catLoad } = useFetch('/category');
-  const { getResponse:brandList, error:brandErr, loading:brandLoad } = useFetch('/brand');
+  const { getResponse, error:catErr, loading:catLoad } = useFetch('/api/category');
+  const { getResponse:brandList, error:brandErr, loading:brandLoad } = useFetch('/api/brand');
 
   const [inputs, setInputs] = useState({
     name: '',
@@ -106,7 +106,7 @@ const AddProduct = () => {
       if (thumbnail) {
         const thumbnailFormData = new FormData();
         thumbnailFormData.append('file', thumbnail);
-        const thumbnailResponse = await axios.post(`${api_base_URL}/upload`, thumbnailFormData, {
+        const thumbnailResponse = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/upload`, thumbnailFormData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -120,7 +120,7 @@ const AddProduct = () => {
         const imageUploadPromises = images.map(image => {
           const imageFormData = new FormData();
           imageFormData.append('file', image);
-          return axios.post('https://mern-store-backend-sigma.vercel.app/api/upload', imageFormData, {
+          return axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/upload`, imageFormData, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
@@ -237,9 +237,9 @@ const AddProduct = () => {
         <Col>Action</Col>
       </Row>
 
-      {getResponseCall && getResponseCall.map((item, i) => (
+      {getResponseCall && getResponseCall?.data.map((item, i) => (
         <Row key={i}>
-          <Col><img src={`https://mern-store-backend-sigma.vercel.app/${item.thumbnail}`} width={50} /></Col>
+          <Col><img src={`${process.env.REACT_APP_API_BASE_URL}/${item.thumbnail}`} width={50} /></Col>
           <Col>{item.name}</Col>
           <Col>{item.price}</Col>
           <Col>{item.description}</Col>

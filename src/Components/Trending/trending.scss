@@ -1,28 +1,29 @@
 @import "../../styles/global.scss";
 
 .productListWrapper {
-  padding: 100px 0;
+  padding: 50px 0;
 
-  :global {
+  
     .loadBtn {
       background-color: $nevyBlue;
       border: none;
       color: $white;
       padding: 10px 25px;
     }
-  }
+  
 }
 
 .categorySelector {
   max-width: 290px;
- 
+  margin-left: auto;
 }
 
 .productList {
   display: inline-grid;
-  grid-template-columns: repeat(3, 33%);
-  width: 100%;
+  grid-template-columns: repeat(4, 23%);
   padding-top: 30px;
+  width: 100%;
+  gap: 2%;
 }
 
 .searchBar {

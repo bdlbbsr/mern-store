@@ -2,10 +2,10 @@
 
 .cardImg {
   cursor: pointer;
-  max-height: 150px;
-  max-width: 150px;
+  max-height: 180px;
+  width: auto;
   margin: 0 auto;
-  padding: 10px 0;
+  padding: 0;
 }
 
 .productCard {
@@ -15,7 +15,8 @@
   // box-shadow: 1px 1px 10px #d3d3d3;
   border: solid 1px #ddd;
   margin-bottom: 20px;
-  padding-top: 20px;
+  padding: 20px 0;
+  text-align: center;
   &:hover {
     transform: scale(1.05);
     transition: all 0.5s ease-in;

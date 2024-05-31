@@ -8,7 +8,7 @@ import {
   setSearchProduct,
 } from "../../Redux/features/ProductFilter/FilterSlice";
 import ProductCard from "../ProductCard/ProductCard";
-import styles from "./trending.module.scss";
+import styles from "./trending.scss";
 import Loader from "../Loader/Loader";
 
 import { BiSearch } from "react-icons/bi";
@@ -83,7 +83,7 @@ const Trending = () => {
   return (
     
       <Container className="containerWrapper">
-        <div className={styles.searchWrapper}>
+        <div className='searchWrapper'>
           <div>
             <h3>Trending Products</h3>
             <p>
@@ -94,7 +94,7 @@ const Trending = () => {
             {showSearch && (
               <input
                 type="text"
-                className={styles.searchBar}
+                className='searchBar'
                 value={searchedProduct}
                 onChange={(e) => dispatch(setSearchProduct(e.target.value))}
                 placeholder="Search Product"
@@ -107,7 +107,7 @@ const Trending = () => {
             />
           </div>
         </div>
-        <div className={styles.categorySelector}>
+        <div className='categorySelector'>
           <select
             className="form-select"
             aria-label="Default select example"
@@ -121,7 +121,7 @@ const Trending = () => {
             ))}
           </select>
         </div>
-        <div className={styles.productList}>
+        <div className='productList'>
           {productsData?.slice(0, 8).map((product) => {
             return <ProductCard key={product?._id} product={product} />;
           })}

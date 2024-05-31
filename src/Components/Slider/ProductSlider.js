@@ -1,9 +1,9 @@
 import React, { useLayoutEffect, useState } from "react";
 import useFetchByCall from '../../Services/useFetchByCall';
 import Loader from "../Loader/Loader";
-import styles from "./slider.module.scss";
+import styles from "./slider.scss";
 import ImageGallery from "react-image-gallery";
-const api_base_URL = 'https://mern-store-backend-sigma.vercel.app';
+ 
 
 const ProductSlider = (props) => {
   const { getDataByCall, getResponseCall, error, loading } = useFetchByCall();
@@ -23,8 +23,8 @@ const ProductSlider = (props) => {
 
   const transformedArray = galleryImages?.map((path) => ({
     caption: '',
-    original: api_base_URL + '/' + path,
-    thumbnail: api_base_URL + '/' + path
+    original: process.env.REACT_APP_API_BASE_URL + '/' + path,
+    thumbnail: process.env.REACT_APP_API_BASE_URL + '/' + path
   })) || [];
 
 
@@ -44,9 +44,10 @@ const ProductSlider = (props) => {
     
     :
     <img
-              src={`${api_base_URL}/${props?.data?.thumbnail}`}
+              src={`${process.env.REACT_APP_API_BASE_URL}/${props?.data?.thumbnail}`}
               alt="product-img"
               style={{ maxWidth: "100%", maxHeight: " " }}
+              loading="lazy"
             />
       }
       

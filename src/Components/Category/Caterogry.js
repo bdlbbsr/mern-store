@@ -6,13 +6,13 @@ import cat1 from "../../assests/cat1.jpg";
 import cat2 from "../../assests/cat2.jpg";
 import cat3 from "../../assests/cat3.jpg";
 import cat4 from "../../assests/cat4.jpg";
-import cat5 from "../../assests/cat5.jpeg";
-import styles from "./category.module.scss";
+import cat5 from "../../assests/cat5.jpg";
+import styles from "./category.scss";
 const imgurl = '/'
 
 const Caterogry = () => {
   const navigate = useNavigate();
-  const { getResponse, error, loading } = useFetch('/category');
+  const { getResponse, error, loading } = useFetch('/api/category');
  
 
   const handleClick = (item) => {
@@ -24,7 +24,7 @@ const Caterogry = () => {
   return (
     <div className="pt-5 container">
        
-      <div className={`${styles.categoryWrapper}`}>
+      <div className='categoryWrapper'>
         {getResponse?.map((Category, i) => {
           return (
             <div key={i}>
@@ -49,4 +49,4 @@ const Caterogry = () => {
   );
 };
 
-export default Caterogry;
+export default React.memo(Caterogry);

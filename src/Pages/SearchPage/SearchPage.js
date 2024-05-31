@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useLocation, useNavigate } from 'react-router-dom';
 import useFetch from '../../Services/useFetch';
-import styles from "./SearchPage.module.scss";
+import styles from "./SearchPage.scss";
 import Pagination from '../../Components/Pagination/Pagination';
 
-const api_base_URL = 'https://mern-store-backend-sigma.vercel.app';
+
 
 const SearchPage = () => {
   const navigate = useNavigate();
@@ -18,8 +18,8 @@ const SearchPage = () => {
   const [sortField, setSortField] = useState('');
   const [sortOrder, setSortOrder] = useState('');
   const [products, setProducts] = useState([]);
-  const { getResponse: categories, error: catErr, loading: catLoad } = useFetch('/category');
-  const { getResponse: brandslist, error: brandErr, loading: brandLoad } = useFetch('/brand');
+  const { getResponse: categories, error: catErr, loading: catLoad } = useFetch('/api/category');
+  const { getResponse: brandslist, error: brandErr, loading: brandLoad } = useFetch('/api/brand');
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [totalItems, setTotalItems] = useState();
@@ -32,7 +32,7 @@ const SearchPage = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.post(`https://mern-store-backend-sigma.vercel.app/api/search?page=${page}&pageSize=${pageSize}`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/search?page=${page}&pageSize=${pageSize}`, {
         query: state,
         category,
         brand: brands.length > 0 ? brands : undefined,
@@ -91,9 +91,9 @@ const SearchPage = () => {
   return (
     <Container className="containerWrapper">
       <Row>
-        <Col md={3} className="d-none d-md-block">
+        <Col md={3} className="d-none d-md-block pb-5">
           <h5 className="mt-5">By Category</h5>
-          <div className={styles.categorySelector}>
+          <div className='categorySelector'>
             {categories?.map((category, i) => {
               return (
                 <div key={i}>
@@ -160,7 +160,7 @@ const SearchPage = () => {
           </div>
 
           <h5 className="mt-5">By Brand</h5>
-          <div className={styles.categorySelector}>
+          <div className='categorySelector'>
             {brandslist?.map((brand, i) => {
               return (
                 <div key={i}>
@@ -194,12 +194,13 @@ const SearchPage = () => {
         <Col xs={12} md={9}>
           <div>
           {products && products.map((product, i) => (
-            <Row key={i} className={styles.cartCard} onClick={() => handleClick(product)}>
+            <Row key={i} className='cartCard' onClick={() => handleClick(product)}>
               <Col md={3}>
                 <img
-                  src={`${api_base_URL}/${product?.thumbnail}`}
+                  src={`${process.env.REACT_APP_API_BASE_URL}/${product?.thumbnail}`}
                   alt="product-img"
                   style={{ maxWidth: "200px", maxHeight: "100px" }}
+                  loading="lazy"
                 />
               </Col>
               <Col md={4}>

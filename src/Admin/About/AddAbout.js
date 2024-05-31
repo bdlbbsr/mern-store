@@ -5,7 +5,7 @@ import { patchAPI } from "../../Services/apiRequests";
 import styles from "../admin.module.css";
 import useFetch from '../../Services/useFetch'
 import usePatch from '../../Services/usePatch'
-const apiUrl = '/about'
+const apiUrl = '/api/about'
 
 const AddAbout = () => {
   const { getResponse, error:aboutErr, loading:aboutload } = useFetch(apiUrl);
@@ -30,8 +30,6 @@ const AddAbout = () => {
     patchData(apiUrl, inputs)
   };
  
-
-
   return (
     <Container className="containerWrapper">
     

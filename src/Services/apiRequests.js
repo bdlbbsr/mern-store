@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const api_base_URL = "https://mern-store-backend-sigma.vercel.app/api";
-
 export const getAPI = (path) => {
 
     const userDtl = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : {}
@@ -10,7 +8,7 @@ export const getAPI = (path) => {
     var config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: `${api_base_URL}${path}`,
+        url: `${process.env.REACT_APP_API_BASE_URL}${path}`,
         headers: { 'Authorization': `Bearer ${token}` },
     };
 
@@ -33,7 +31,7 @@ export const getSingleAPI = (path, id) => {
     var config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: `${api_base_URL}${path}/${id}`,
+        url: `${process.env.REACT_APP_API_BASE_URL}${path}/${id}`,
         headers: { 'Authorization': `Bearer ${token}` },
     };
 
@@ -54,7 +52,7 @@ export const postAPI = (path, body) => {
     var config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: `${api_base_URL}${path}`,
+        url: `${process.env.REACT_APP_API_BASE_URL}${path}`,
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         data: body
     };
@@ -85,7 +83,7 @@ export const patchAPI = (path, body) => {
     var config = {
         method: 'patch',
         maxBodyLength: Infinity,
-        url: `${api_base_URL}${path}`,
+        url: `${process.env.REACT_APP_API_BASE_URL}${path}`,
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         data: body
     };
@@ -112,7 +110,7 @@ export const deleteAPI = (path, id) => {
     var config = {
         method: 'delete',
         maxBodyLength: Infinity,
-        url: `${api_base_URL}${path}/${id}`,
+        url: `${process.env.REACT_APP_API_BASE_URL}${path}/${id}`,
         headers: { 'Authorization': `Bearer ${token}` },
 
     };
@@ -153,7 +151,7 @@ export const fileUploadApi = async (url, file) => {
 //       var config = {
 //           method: 'patch',
 //           maxBodyLength: Infinity,
-//           url: `${api_base_URL}${path}`,
+//           url: `${process.env.REACT_APP_API_BASE_URL}${path}`,
 //           headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/x-www-form-urlencoded' } ,
 //           data: body
 //       };
@@ -176,7 +174,7 @@ export const UploadSingleImage = async (singleFile) => {
         if (singleFile) {
             const thumbnailFormData = new FormData();
             thumbnailFormData.append('file', singleFile);
-            const thumbnailResponse = await axios.post(`${api_base_URL}/upload`, thumbnailFormData, {
+            const thumbnailResponse = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/upload`, thumbnailFormData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -207,7 +205,7 @@ export const UploadMultipleImage = async (multipleFile) => {
             const imageUploadPromises = multipleFile.map(image => {
                 const imageFormData = new FormData();
                 imageFormData.append('file', image);
-                return axios.post(`${api_base_URL}/upload`, imageFormData, {
+                return axios.post(`${process.env.REACT_APP_API_BASE_URL}/upload`, imageFormData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },

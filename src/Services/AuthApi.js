@@ -1,8 +1,7 @@
-const api_base_URL = "https://mern-store-backend-sigma.vercel.app/api";
 
 export function createUser(userData) {
   return new Promise(async (resolve) => {
-    const response = await fetch(`${api_base_URL}/auth/register`, {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/auth/register`, {
       method: "POST",
       body: JSON.stringify(userData),
       headers: { "content-type": "application/json" },
@@ -15,7 +14,7 @@ export function createUser(userData) {
 export function loginUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch(`${api_base_URL}/auth/login`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/auth/login`, {
         method: "POST",
         body: JSON.stringify(loginInfo),
         headers: { "content-type": "application/json" },
@@ -37,7 +36,7 @@ export function loginUser(loginInfo) {
 export function signOut() {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch(`${api_base_URL}/auth/logout`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/auth/logout`, {
         method: "POST",
         body: "",
         headers: { "content-type": "application/json" },
@@ -60,7 +59,7 @@ export function resetPasswordRequest(email) {
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch(
-        `${api_base_URL}/auth/reset-password-request`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/auth/reset-password-request`,
         {
           method: "POST",
           body: JSON.stringify({ email }),
@@ -83,7 +82,7 @@ export function resetPasswordRequest(email) {
 export function resetPassword(data) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch(`${api_base_URL}/auth/reset-password/`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/auth/reset-password/`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: { "content-type": "application/json" },

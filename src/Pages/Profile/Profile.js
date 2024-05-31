@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./profile.module.scss";
+import styles from "./profile.scss";
 import { Container, Row } from "react-bootstrap";
 import { selectError, checkAuth } from "../../Redux/features/Auth/AuthSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -19,7 +19,7 @@ const Profile = () => {
     : {};
   const token = userDtl.token;
   const userId = userDtl.userId;
-  const api = `https://mern-store-backend-sigma.vercel.app/api/profile?userId=${userId}`;
+  const api = `${process.env.REACT_APP_API_BASE_URL}/api/profile?userId=${userId}`;
   const [formdata, setFormData] = useState();
   const [addNewAdd, setaddNewAdd] = useState(false);
   const { patchData, getPatchResponse, error, loading } = usePatch();
@@ -34,12 +34,12 @@ const Profile = () => {
     error: addErr,
     loading: addLoad,
     responseCode,
-  } = useFetch(`/profile?userId=${userId}`);
+  } = useFetch(`/api/profile?userId=${userId}`);
   const {
     getResponse: ordersList,
     error: ordrrsErr,
     loading: ordersLoad,
-  } = useFetch(`/order/${userId}`);
+  } = useFetch(`/api/order/${userId}`);
   const {
     getDataByCall,
     getResponseCall,
@@ -90,7 +90,7 @@ const Profile = () => {
   };
 
   const getOrderDetails = async (id) => {
-    getDataByCall(`/orderDeatsil/${id}`);
+    getDataByCall(`/api/orderDeatsil/${id}`);
 
     // let data = await getAPI()
     // if (data.error) {
@@ -246,7 +246,7 @@ const Profile = () => {
                 {ordersList &&
                   ordersList.map((item, i) => (
                     <div
-                      key={i}
+                     key={i}
                       onClick={() => getOrderDetails(item?._id)}>
                       <strong>Order Id -</strong> {item._id} &nbsp;&nbsp;
                       <strong>Order Date -</strong>{" "}
@@ -255,15 +255,15 @@ const Profile = () => {
                       <strong>Total Amount -</strong> {item.totalAmount}{" "}
                       &nbsp;&nbsp;
                       <strong>Status -</strong> {item.status}
-                      <br />
-                      <br />
+                     
+                      
                       <div
                         key={i}
                         style={{
                           display:
-                            item?._id == getResponseCall?._id
+                            item?._id == getResponseCall?.data._id
                               ? "block"
-                              : "none",
+                              : "none"
                         }}>
                         <strong>Order Id -</strong> {item._id} &nbsp;&nbsp;
                         <strong>Order Date -</strong>{" "}

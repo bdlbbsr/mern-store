@@ -10,7 +10,7 @@ export default function useFetchByCall() {
     try {
       setLoading(true);
       const response = await getAPI(url);
-      setGetResponseCall(response.data);
+      setGetResponseCall(response);
     } catch (err) {
       setError(err);
     } finally {

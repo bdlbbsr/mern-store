@@ -6,9 +6,9 @@ import { setProductId } from "../../Redux/features/Product/ProductSlice"
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-import styles from "./productCard.module.scss";
+import styles from "./productCard.scss";
 
-const api_base_URL='https://mern-store-backend-sigma.vercel.app/';
+ 
 
 const ProductCard = ({ product }) => {
   const title = product?.name.slice(0, 20);
@@ -37,15 +37,16 @@ const ProductCard = ({ product }) => {
   return (
      
       <Card
-        style={{ width: "18rem", textAlign: "center" }}
-        className={styles.productCard}
+        
+        className='productCard'
       >
         <Card.Img
           // onClick={() => navigate(`/${product?._id}`)}
           onClick={() => handleClick(product)}
           variant="top"
-          src={`${api_base_URL}${product?.thumbnail}`}
-          className={styles.cardImg}
+          src={`${process.env.REACT_APP_API_BASE_URL}/${product?.thumbnail}`}
+          className='cardImg'
+          loading="lazy"
         />
         <Card.Body>
           <Card.Title>{title}</Card.Title>

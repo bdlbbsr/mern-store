@@ -16,11 +16,11 @@ import {
 import { toast } from "react-toastify";
 import Loader from "../../Components/Loader/Loader";
 import useFetch from "../../Services/useFetch";
-import styles from "./productdetail.module.scss";
+import styles from "./productdetail.scss";
 import ProductSlider from "../../Components/Slider/ProductSlider";
 import SimilarProducts from "../../Components/Slider/SimilarProducts";
 import ErrorPage from "../ErrorPage/ErrorPage"
-const api_base_URL = "https://mern-store-backend-sigma.vercel.app/";
+ 
 
 const ProductDetail = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const ProductDetail = () => {
   useEffect(() => {
     if (productId?.id)
       if (productId?.name != params.productName) {
-        navigate("/");
+        navigate("/page-not-found");
       }
   }, [params.productName]);
 
@@ -47,8 +47,8 @@ const ProductDetail = () => {
     responseCode,
   } = useFetch(
     productId?.id
-      ? `/products/${productId?.id}`
-      : `/product/${params.productName}`
+      ? `/api/products/${productId?.id}`
+      : `/api/product/${params.productName}`
   );
 
   if (responseCode == "404") {
@@ -102,7 +102,7 @@ const ProductDetail = () => {
         <Col
           xs={12}
           md={6}
-          className={styles.imageWrapper}>
+          className='imageWrapper'>
           <ProductSlider data={data} />
         </Col>
         <Col
@@ -129,7 +129,7 @@ const ProductDetail = () => {
         </Col>
       </Row>
       <Row>
-        <Col className={styles.productSliderWrapper}>
+        <Col className='productSliderWrapper'>
           <h4 className="py-2">Simlar Products</h4>
           <SimilarProducts category={data?.category} />
         </Col>

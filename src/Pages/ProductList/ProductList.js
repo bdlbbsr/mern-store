@@ -5,7 +5,7 @@ import ProductCard from "../../Components/ProductCard/ProductCard";
 import SideBar from '../../Components/SideBar';
 import useFetch from '../../Services/useFetch';
 import useFetchByCall from '../../Services/useFetchByCall';
-import styles from "./productlist.module.scss";
+import styles from "./productlist.scss";
 
 
 
@@ -15,7 +15,7 @@ const ProductList = () => {
   const { getDataByCall, getResponseCall, error: fetchError, loading: fetchLoading } = useFetchByCall();
 
   useEffect(() => {
-    getDataByCall(`/productsByCategory/${params.categoryName}/?${searchParams.toString()}`)
+    getDataByCall(`/api/productsByCategory/${params.categoryName}/?${searchParams.toString()}`)
   }, [params.categoryName, searchParams])
 
   return (
@@ -26,7 +26,7 @@ const ProductList = () => {
             <SideBar />
           </Col>
           <Col xs={12} md={9}>
-            <div className={styles.searchWrapper}>
+            <div className='searchWrapper'>
               <div>
                 <h3>List of All Products</h3>
                 <p>
@@ -36,8 +36,8 @@ const ProductList = () => {
 
             </div>
 
-            <div className={styles.productList}>
-              {getResponseCall?.map((product) => {
+            <div className='productList'>
+              {getResponseCall?.data.map((product) => {
                 return <ProductCard key={product?._id} product={product} />;
               })}
             </div>

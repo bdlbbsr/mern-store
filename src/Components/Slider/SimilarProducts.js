@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useState } from "react";
 import useFetchByCall from '../../Services/useFetchByCall';
 import Loader from "../Loader/Loader";
-import styles from "./slider.module.scss";
+import styles from "./slider.scss";
 import ProductCard from "../ProductCard/ProductCard";
 
 const SimilarProducts = ({ category }) => {
@@ -42,7 +42,7 @@ const SimilarProducts = ({ category }) => {
     const fetchData = () => {
 
       delay(10) 
-        .then(() => getDataByCall(`/productsByCategory/${catName}`))
+        .then(() => getDataByCall(`/api/productsByCategory/${catName}`))
         .then((result) => {
           setCategories(result);
         })
@@ -63,8 +63,8 @@ const SimilarProducts = ({ category }) => {
 
   return (
     <div className="container py-3">
-       <div className={styles.productList}>
-              {getResponseCall && getResponseCall?.slice(0, 3)?.map((product) => {
+       <div className='productList'>
+              {getResponseCall && getResponseCall?.data.slice(0, 4)?.map((product) => {
                 return <ProductCard key={product?._id} product={product} />;
               })}
             </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import styles from "../../Pages/ProductList/productlist.module.scss";
+import styles from "../../Pages/ProductList/productlist.scss";
 import useFetch from "../../Services/useFetch";
 import useFetchByCall from "../../Services/useFetchByCall";
 
@@ -15,12 +15,12 @@ const SideBar = () => {
     getResponse: categories,
     error: catErr,
     loading: catLoad,
-  } = useFetch("/category");
+  } = useFetch("/api/category");
   const {
     getResponse: brands,
     error: brandErr,
     loading: brandLoad,
-  } = useFetch("/brand");
+  } = useFetch("/api/brand");
   // const { getDataByCall, getResponseCall, error: fetchError, loading: fetchLoading } = useFetchByCall();
 
   // useEffect(() => {
@@ -107,7 +107,7 @@ const SideBar = () => {
       <h3>Filters</h3>
 
       <h5 className="mt-5">By Category</h5>
-      <div className={styles.categorySelector}>
+      <div className='categorySelector'>
         {categories?.map((category, i) => {
           return (
             <div key={i}>
@@ -149,7 +149,7 @@ const SideBar = () => {
       ))}
 
       <h5 className="mt-5">By Brand</h5>
-      <div className={styles.categorySelector}>
+      <div className='categorySelector'>
         {brands?.map((brand, i) => {
           return (
             <div key={i}>
@@ -194,4 +194,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default React.memo(SideBar);

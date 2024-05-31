@@ -1,6 +1,6 @@
 @import "../../styles/global.scss";
 
-.navBar {
+.topBar {
   background-color: #004175;
   min-height: 70px;
   box-shadow: 0 1px 5px #00000029;
@@ -18,7 +18,7 @@
 .customDrupdown a{text-decoration: none; color: #fff;}
 .customDropItem a, .customDropItem span{color: #000;}
 
-.navLink {
+.navLinkStl {
   font-size: 22px;
   // line-height: 24px;
   text-decoration: none;
@@ -67,7 +67,7 @@
     top: -5px;
     left: 16px;
 
-    :global {
+    
       h6 {
         color: $black;
         font-size: 14px;
@@ -75,7 +75,7 @@
         text-align: center;
         margin-top: 1px;
       }
-    }
+    
   }
 }
 

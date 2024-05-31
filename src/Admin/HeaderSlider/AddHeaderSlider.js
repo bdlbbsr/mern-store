@@ -10,8 +10,8 @@ import usePatch from '../../Services/usePatch';
 import usePost from '../../Services/usePost';
 import styles from "../admin.module.css";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
-const apiUrl = "/home-slider";
-const api_base_URL = "https://mern-store-backend-sigma.vercel.app/api";
+const apiUrl = "/api/home-slider";
+
 
 
 const AddHeaderSlider = () => {
@@ -83,7 +83,7 @@ const AddHeaderSlider = () => {
       if (thumbnail) {
         const thumbnailFormData = new FormData();
         thumbnailFormData.append('file', thumbnail);
-        const thumbnailResponse = await axios.post(`${api_base_URL}/upload`, thumbnailFormData, {
+        const thumbnailResponse = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/upload`, thumbnailFormData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -158,9 +158,9 @@ const AddHeaderSlider = () => {
         <Col>Action</Col>
       </Row>
 
-      {getResponseCall && getResponseCall.map((item, i) => (
+      {getResponseCall && getResponseCall?.data.map((item, i) => (
         <Row key={i}>
-          <Col><img src={`https://mern-store-backend-sigma.vercel.app/${item.image}`} height={50} /></Col>
+          <Col><img src={`${process.env.REACT_APP_API_BASE_URL}/${item.image}`} height={50} /></Col>
           <Col>{item.caption}</Col>
           <Col>{item.link}</Col>
           <Col> <AiOutlineEdit size={30} onClick={() => editItem(i)} /> <AiOutlineDelete size={30} onClick={() => deleteItem(i)} /> </Col>

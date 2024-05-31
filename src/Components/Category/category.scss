@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
 
-  :global {
+   
     .category {
       aspect-ratio: 16/9;
       width: 200px;
@@ -16,7 +16,7 @@
       align-items: center;
       margin-top: 10px;
     }
-  }
+  
 }
 
 @media (max-width: $media-md) {
@@ -25,11 +25,11 @@
     align-items: center;
     gap: 20px;
 
-    :global {
+    
       .category {
         width: 100%;
       }
-    }
+    
   }
 }
 
@@ -39,10 +39,10 @@
     grid-template-columns: repeat(2, auto);
     row-gap: 30px;
 
-    :global {
+   
       .category {
         width: 300px;
       }
-    }
+    
   }
 }

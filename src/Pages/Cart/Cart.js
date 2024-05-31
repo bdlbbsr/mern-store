@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
-import styles from "./cart.module.scss";
+import styles from "./cart.scss";
 import { useForm } from "react-hook-form";
 import usePost from "../../Services/usePost";
 import useFetch from "../../Services/useFetch";
@@ -39,7 +39,7 @@ const Cart = () => {
     loading: postLoad,
   } = usePost();
   const { getResponse, error, loading, responseCode } = useFetch(
-    `/profile?userId=${userId}`
+    `/api/profile?userId=${userId}`
   );
 
   //calculate total price
@@ -118,7 +118,6 @@ const Cart = () => {
     };
   };
 
-  console.log("paymentData", paymentData?.payment);
 
   const goForPayment = () => {
     let orderData = {
@@ -139,7 +138,7 @@ const Cart = () => {
       },
     };
 
-    createData("/order", orderData);
+    createData("/api/order", orderData);
     dispatch(removeAll());
     //localStorage.setItem("cart", []);
 
@@ -179,10 +178,10 @@ const Cart = () => {
                     return (
                       <div
                         key={product._id}
-                        className={styles.cartCard}>
+                        className='cartCard'>
                         <div>
                           <img
-                            src={`https://mern-store-backend-sigma.vercel.app/${product.thumbnail}`}
+                            src={`${process.env.REACT_APP_API_BASE_URL}/${product.thumbnail}`}
                             alt="product"
                             width="50px"
                           />
@@ -195,13 +194,13 @@ const Cart = () => {
                         </div>
                         <div className="cartBtns">
                           <button
-                            className={`${styles.cartBtn} fw-bold`}
+                            className='cartBtn fw-bold'
                             onClick={() => dispatch(incrementProduct(product))}>
                             +
                           </button>
                           <h6>{product.quantity}</h6>
                           <button
-                            className={`${styles.cartBtn} fw-bold`}
+                            className='cartBtn fw-bold'
                             onClick={() => dispatch(reduceProduct(product))}>
                             -
                           </button>
@@ -224,7 +223,7 @@ const Cart = () => {
 
                   <div className="mb-5 d-flex justify-content-between">
                     <button
-                      className={styles.cartBtn}
+                      className='cartBtn'
                       onClick={removeAllProduct}>
                       Remove All items
                     </button>

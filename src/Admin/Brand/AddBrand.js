@@ -11,8 +11,8 @@ import usePost from '../../Services/usePost';
 import styles from "../admin.module.css";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { useNavigate} from "react-router-dom";
-const apiUrl = "/brand";
-const api_base_URL = "https://mern-store-backend-sigma.vercel.app/api";
+const apiUrl = "/api/brand";
+
 
 
 const AddBrand = () => {
@@ -83,7 +83,7 @@ const AddBrand = () => {
       if (thumbnail) {
         const thumbnailFormData = new FormData();
         thumbnailFormData.append('file', thumbnail);
-        const thumbnailResponse = await axios.post(`${api_base_URL}/upload`, thumbnailFormData, {
+        const thumbnailResponse = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/upload`, thumbnailFormData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -159,11 +159,11 @@ const AddBrand = () => {
         <Col>Action</Col>
       </Row>
 
-      {getResponseCall && getResponseCall.map((item, i) => (
+      {getResponseCall && getResponseCall?.data.map((item, i) => (
         <Row key={i}>
           <Col>{item.name}</Col>
           <Col>{item.description}</Col>
-          <Col><img src={`https://mern-store-backend-sigma.vercel.app/${item.logo}`} width={50}/></Col>
+          <Col><img src={`${process.env.REACT_APP_API_BASE_URL}/${item.logo}`} width={50}/></Col>
           <Col> <AiOutlineEdit size={30} onClick={() => editItem(item._id)} /> <AiOutlineDelete size={30} onClick={() => deleteItem(item._id)} /> </Col>
         </Row>
       ))}
