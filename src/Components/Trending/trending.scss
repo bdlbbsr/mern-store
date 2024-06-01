@@ -3,14 +3,12 @@
 .productListWrapper {
   padding: 50px 0;
 
-  
-    .loadBtn {
-      background-color: $nevyBlue;
-      border: none;
-      color: $white;
-      padding: 10px 25px;
-    }
-  
+  .loadBtn {
+    background-color: $nevyBlue;
+    border: none;
+    color: $white;
+    padding: 10px 25px;
+  }
 }
 
 .categorySelector {
@@ -18,12 +16,17 @@
   margin-left: auto;
 }
 
-.productList {
-  display: inline-grid;
-  grid-template-columns: repeat(4, 23%);
-  padding-top: 30px;
-  width: 100%;
-  gap: 2%;
+.trending {
+
+
+    .productList {
+      display: inline-grid;
+      grid-template-columns: repeat(4, 23%);
+      width: 100%;
+      grid-gap: 30px;
+    }
+
+
 }
 
 .searchBar {

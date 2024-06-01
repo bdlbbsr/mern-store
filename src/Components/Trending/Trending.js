@@ -82,7 +82,7 @@ const Trending = () => {
 
   return (
     
-      <Container className="containerWrapper">
+      <Container className="containerWrapper trending">
         <div className='searchWrapper'>
           <div>
             <h3>Trending Products</h3>
@@ -121,7 +121,7 @@ const Trending = () => {
             ))}
           </select>
         </div>
-        <div className='productList'>
+        <div className='productList mt-5'>
           {productsData?.slice(0, 8).map((product) => {
             return <ProductCard key={product?._id} product={product} />;
           })}
