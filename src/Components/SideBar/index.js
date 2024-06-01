@@ -166,7 +166,7 @@ const SideBar = () => {
         })}
       </div>
 
-      <h5 className="mt-5">By Rating</h5>
+      {/* <h5 className="mt-5">By Rating</h5> */}
 
       <h5 className="mt-5">By Availability</h5>
       <label>

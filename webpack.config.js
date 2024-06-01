@@ -3,6 +3,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: path.join(__dirname, "src", "index.js"),
@@ -37,6 +38,24 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
+    new GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
+      maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // Set the maximum file size you want to cache (in bytes)
+      runtimeCaching: [
+        {
+          urlPattern: /^https:\/\/your-backend-api\.com\/.*$/,
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'api-cache',
+            expiration: {
+              maxEntries: 50,
+              maxAgeSeconds: 5 * 60,
+            },
+          },
+        },
+      ],
+    }),
   ],
   devServer: {
     static: {
