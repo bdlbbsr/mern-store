@@ -10,7 +10,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./Redux/store";
 
-
+import * as serviceWorker from './serviceWorker';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -24,3 +24,5 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>
 );
+
+serviceWorker.register();
