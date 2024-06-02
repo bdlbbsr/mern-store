@@ -3,6 +3,12 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const isProduction = process.env.NODE_ENV === 'production'
+
+console.log("isProduction", isProduction)
 
 module.exports = {
   entry: path.join(__dirname, "src", "index.js"),
@@ -12,9 +18,9 @@ module.exports = {
     maxAssetSize: 512000,
   },
   output: {
-    publicPath: "/",
     path: path.resolve(__dirname, "dist"), // the bundle output path
     filename: "bundle.js", // the name of the bundle
+    publicPath: '/',
   },
 
   plugins: [
@@ -37,7 +43,13 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
+    new RemoveEmptyScriptsPlugin(),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [new CssMinimizerPlugin()],
+    minimizer: [new TerserPlugin()],
+  },
   devServer: {
     static: {
       directory: path.join(__dirname, "public"),
