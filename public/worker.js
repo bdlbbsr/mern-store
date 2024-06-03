@@ -6,12 +6,11 @@ this.addEventListener("install", (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
             return cache.addAll([
-                "/static/js/main.c2446905.js",
+                "/static/js/main.5398f7ca.js",
                 "/static/js/531.ff44cf4c.chunk.js",
-                "/static/js/866.6e293668.chunk.js",
-                "/static/js/687.a5520543.chunk.js",
-                "/static/css/main.35db733e.css",
-                "/static/css/0b039099.chunk.css",
+                "/static/js/399.17d5f929.chunk.js",
+                "/static/css/main.898b09e6.css",
+                "/static/css/399.7e57ee08.chunk.css",
                 "offline.html",
                 "/"
                 //if you want cache the first page , add "/"
