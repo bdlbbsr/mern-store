@@ -7,6 +7,14 @@
   grid-gap: 48px;
 }
 
+@media all and (max-width: 768px) {
+  .productList {
+    display: inline-grid;
+    grid-template-columns: repeat(2, 45%);
+    width: 100%;
+    grid-gap: 1px;
+  }
+}
 
 
 .sliderItem {

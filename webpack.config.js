@@ -8,7 +8,6 @@ const TerserPlugin = require("terser-webpack-plugin");
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const isProduction = process.env.NODE_ENV === 'production'
 
-console.log("isProduction", isProduction)
 
 module.exports = {
   entry: path.join(__dirname, "src", "index.js"),
@@ -55,7 +54,6 @@ module.exports = {
       directory: path.join(__dirname, "public"),
     },
     compress: true,
-    hot: true,
     open: true,
     port: 3000,
     historyApiFallback: true,

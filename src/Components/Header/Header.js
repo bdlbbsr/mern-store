@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Navbar } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import {
   AiOutlineShoppingCart,
   AiOutlineUser,
   AiTwotoneHeart,
+  AiOutlineFileSearch
 } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -51,10 +52,13 @@ const Header = () => {
               My Store
             </NavLink>
           </div>
-          <div className="searchBar order-2 order-md-1">
+          <div className="searchBar order-2 order-md-1 hideforsm">
             <Search />
           </div>
           <div className="rightIcons order-1 order-md-2">
+
+          
+
             <Dropdown className="customDrupdown">
               <Dropdown.Toggle
                 as={CustomToggle}
