@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import { removeAll } from "../../Redux/features/wishlist/WishListSlice";
 import noitem from "../../assests/noitem.svg";
-import "./wishlist.scss";
+import styles from "./wishlist.scss";
 
 const WishList = () => {
   const dispatch = useDispatch();
@@ -28,14 +28,14 @@ const WishList = () => {
         <h2 className="text-center py-3">My WishList</h2>
         <div
           className={
-            products?.wishList?.length > 0 ? styles.wishListItemWrapper : ""
+            products?.wishList?.length > 0 ? 'wishListItemWrapper' : ""
           }
         >
           {content}
         </div>
         {products?.wishList?.length > 0 && (
           <button
-            className='wishListBtn'
+          className="wishListBtn"
             onClick={() => dispatch(removeAll())}
           >
             Remove all from Wishlist

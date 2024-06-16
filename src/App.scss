@@ -1,4 +1,4 @@
-@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap.scss";
 @import "./styles/global.scss";
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
@@ -18,11 +18,6 @@ html {
   padding-bottom: 50px;
 }
 
-// .main {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
 
 .topSearchBox {
   width: 500px;

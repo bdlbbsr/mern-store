@@ -12,11 +12,11 @@
 }
 
 .wishListBtn {
-  background-color: $nevyBlue !important;
+  background-color: #000 !important;
   border: none;
   padding: 5px 15px;
   border-radius: 4px;
-  color: $white !important;
+  color: #fff !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,10 +37,10 @@
   }
 
   .wishListWrapper {
-    
+    :global {
       img {
         width: 100%;
       }
-    
+    }
   }
 }

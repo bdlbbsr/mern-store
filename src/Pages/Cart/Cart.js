@@ -15,6 +15,7 @@ import {
 } from "../../Redux/features/Cart/CartSlice";
 import EmptyCart from "../../Components/EmptyCart/EmptyCart";
 import { toast } from "react-toastify";
+import { checkAuth, signOutAsync } from "../../Redux/features/Auth/AuthSlice";
 const addressapiUrl = "/saveAddress";
 const Cart = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const Cart = () => {
 
   const [addNewAddess, setaddNewAddess] = useState(false);
   const [selectedAddess, setSelectedAddess] = useState();
+  const isAuthenticated = useSelector(checkAuth);
 
   const dispatch = useDispatch();
   const products = useSelector((state) => state.cart);
@@ -38,9 +40,7 @@ const Cart = () => {
     error: postErr,
     loading: postLoad,
   } = usePost();
-  const { getResponse, error, loading, responseCode } = useFetch(
-    `/api/profile?userId=${userId}`
-  );
+  const { getResponse, error, loading, responseCode } = isAuthenticated ? useFetch(`/api/profile?userId=${userId}`) : '';
 
   //calculate total price
   const totalPrice = products.cart.reduce(
@@ -198,7 +198,7 @@ const Cart = () => {
                             onClick={() => dispatch(incrementProduct(product))}>
                             +
                           </button>
-                          <h6>{product.quantity}</h6>
+                          <span className="mx-3 fw-bold">{product.quantity}</span>
                           <button
                             className='cartBtn fw-bold'
                             onClick={() => dispatch(reduceProduct(product))}>

@@ -6,8 +6,9 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
-const isProduction = process.env.NODE_ENV === 'production'
+// const isProduction = process.env.NODE_ENV === 'production'
 
+console.log("env", process.env.NODE_ENV , process.env.REACT_APP_API_BASE_URL)
 
 module.exports = {
   entry: path.join(__dirname, "src", "index.js"),
@@ -26,6 +27,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       //template: path.join(__dirname, "src", "index.html"), // to import index.html file inside index.js
       template: path.join(__dirname, "public", "index.html"),
+      favicon: path.join(__dirname, "public", "favicon.ico"),
+      manifest: path.join(__dirname, "public", "manifest.json"),
+      filename: 'index.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -37,12 +41,17 @@ module.exports = {
         minifyCSS: true,
         minifyURLs: true,
       },
-      chunksSortMode: "auto",
+      // chunksSortMode: "auto",
     }),
     new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
     new RemoveEmptyScriptsPlugin(),
+
+  //   new webpack.DefinePlugin({
+  //     'process.env.API_URL': JSON.stringify(process.env.API_URL)
+  // })
+
   ],
   optimization: {
     minimize: true,
@@ -56,15 +65,15 @@ module.exports = {
     compress: true,
     open: true,
     port: 3000,
+    host:'0.0.0.0',
     historyApiFallback: true,
-    proxy: [
-      {
-        context: ["/api"],
-        target: "http://localhost:8080",
-        pathRewrite: { "^/api": "" },
-        changeOrigin: true,
-      },
-    ],
+    allowedHosts: ['http://localhost', 'http://localhost:8080', 'https://mern-store-backend-sigma.vercel.app/'],
+    proxy: {
+      "/api": "https://mern-store-backend-sigma.vercel.app",
+      changeOrigin: true,
+        logLevel: "debug" /*optional*/,
+  }
+
   },
   module: {
     rules: [
@@ -80,8 +89,9 @@ module.exports = {
       },
       {
         test: /\.(sa|sc|c)ss$/, // styles files
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', "sass-loader"],
       },
+      
       {
         test: /\.(png|jpg|gif|svg)$/,
         type: "asset/resource",

@@ -1,11 +1,17 @@
-import React, { useEffect, useMemo, useCallback, useState, useTransition } from "react";
+import React, {
+  useEffect,
+  useMemo,
+  useCallback,
+  useState,
+  useTransition,
+} from "react";
 import { Container, Row } from "react-bootstrap";
 import useFetchByCall from "../../Services/useFetchByCall";
 import useWebWorker from "../../Services/useWorkers";
 
 const About = () => {
   const [isPending, startTransition] = useTransition();
-  const [webResult, setWebResult] = useState()
+  const [webResult, setWebResult] = useState();
   const {
     getDataByCall,
     getResponseCall,
@@ -37,37 +43,47 @@ const About = () => {
     expensiveFunction();
   }, []);
 
+  // api.js
+  // export const getDataByCall = () => {
+  //   return fetch("https://api.co/api/v2/endpoint").then((resp) => {
+  //     if (resp.status === 200) return resp.json();
+  //     else throw new Error("Invalid response");
+  //   });
+  // };
 
-  function workerFunction(){
-    this.onmessage = function(e) {
+  // useEffect(() => {
+  //   getDataByCall()
+  //     .then((data) => setData(data))
+  //     .catch((e) => setError(true));
+  // }, []);
+
+  function workerFunction() {
+    this.onmessage = function (e) {
       let sum = 0;
       for (let i = 0; i < e.data; i++) {
         sum += i;
       }
-    this.postMessage (sum)
-    }}
-
-    
+      this.postMessage(sum);
+    };
+  }
 
   const { result, error, loading } = useWebWorker(workerFunction, 50000000);
 
-
   useEffect(() => {
-    setWebResult(result)
+    setWebResult(result);
   }, [result]);
-
 
   const fetchData = () => {
     // Perform the resource-intensive operation (e.g., fetching data from an API)
   };
-   
+
   const handleButtonClick = () => {
     startTransition(() => {
       fetchData();
     });
   };
 
-//{isPending ? 'show loader' : show result data}
+  //{isPending ? 'show loader' : show result data}
 
   // if (loading) {
   //   return <div>Loading...</div>;
