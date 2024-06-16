@@ -7,7 +7,7 @@ import FilterProductReducer from "./features/ProductFilter/FilterSlice";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import logger from "redux-logger";
 
-// console.log("process.env.NODE_ENV", process.env.NODE_ENV);
+console.log("env123", process.env.NODE_ENV);
 
 const middleware = (getDefaultMiddleware) => getDefaultMiddleware().concat(logger);
 const enhancers = (getDefaultEnhancers) =>
@@ -38,7 +38,7 @@ export const store = configureStore({
     wishlist: WishListReducer,
     productFilter: FilterProductReducer,
   },
-  middleware,
+  middleware : process.env.NODE_ENV !== 'production',
   enhancers,
-  devTools: composeEnhancers,
+  devTools: process.env.NODE_ENV !== 'production',
 });
