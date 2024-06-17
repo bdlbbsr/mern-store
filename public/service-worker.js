@@ -9,7 +9,7 @@ this.addEventListener("install", (event) => {
     caches.open(cacheData).then((cache) => {
       // add all the files to the cache
       cache.addAll([
-        "/static/js/main.e95f463d.js",
+        "/static/js/main.64f66742.js",
         "/static/css/main.5f1bbe50.css",
         "/",
         "/index.html",
