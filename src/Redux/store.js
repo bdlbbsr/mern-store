@@ -7,9 +7,18 @@ import FilterProductReducer from "./features/ProductFilter/FilterSlice";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import logger from "redux-logger";
 
+const middlewares = [];
+ 
+if (process.env.NODE_ENV === `development`) {
+
+  // const middleware = (getDefaultMiddleware) => getDefaultMiddleware().concat(logger);
+
+  // middlewares.push(logger);
+}
+
 console.log("env123", process.env.NODE_ENV);
 
-const middleware = (getDefaultMiddleware) => getDefaultMiddleware().concat(logger);
+// const middleware = (getDefaultMiddleware) => getDefaultMiddleware().concat(logger);
 const enhancers = (getDefaultEnhancers) =>
   getDefaultEnhancers({
     autoBatch: { type: 'tick' },
@@ -38,7 +47,7 @@ export const store = configureStore({
     wishlist: WishListReducer,
     productFilter: FilterProductReducer,
   },
-  middleware : process.env.NODE_ENV !== 'production',
+  middlewares,
   enhancers,
   devTools: process.env.NODE_ENV !== 'production',
 });
