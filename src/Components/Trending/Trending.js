@@ -80,6 +80,7 @@ const Trending = () => {
     return <h2>{status}</h2>;
   }
 
+
   return (
     
       <Container className="containerWrapper trending">

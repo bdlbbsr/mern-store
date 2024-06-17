@@ -64,7 +64,7 @@ const SimilarProducts = ({ category }) => {
   return (
     <div className="container py-3">
        <div className='productList'>
-              {getResponseCall && getResponseCall?.data.slice(0, 4)?.map((product) => {
+              {getResponseCall && getResponseCall?.products.slice(0, 3)?.map((product) => {
                 return <ProductCard key={product?._id} product={product} />;
               })}
             </div>
