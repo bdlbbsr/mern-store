@@ -42,7 +42,7 @@ export const CartSlice = createSlice({
         state.cart[itemIndex].quantity -= 1;
       } else if (state.cart[itemIndex].quantity === 1) {
         const updatedCart = state.cart.filter(
-          (p) => p.id !== action.payload.id
+          (p) => p._id !== action.payload._id
         );
         state.cart = updatedCart;
       }
