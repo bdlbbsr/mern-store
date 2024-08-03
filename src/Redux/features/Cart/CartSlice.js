@@ -35,7 +35,7 @@ export const CartSlice = createSlice({
 
     reduceProduct(state, action) {
       const itemIndex = state.cart.findIndex(
-        (item) => item.id === action.payload.id
+        (item) => item._id === action.payload._id
       );
 
       if (state.cart[itemIndex].quantity > 1) {
@@ -50,7 +50,7 @@ export const CartSlice = createSlice({
     },
     incrementProduct(state, action) {
       const itemIndex = state.cart.findIndex(
-        (item) => item.id === action.payload.id
+        (item) => item._id === action.payload._id
       );
       if (state.cart[itemIndex].quantity >= 1) {
         state.cart[itemIndex].quantity += 1;
