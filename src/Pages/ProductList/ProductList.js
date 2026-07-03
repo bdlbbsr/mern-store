@@ -31,6 +31,7 @@ const ProductList = () => {
   }, [params.categoryName, searchParams]);
 
   const fetchData = useCallback(async () => {
+ 
     if (isLoading) return;
 
     setIsLoading(true);
@@ -42,7 +43,7 @@ const ProductList = () => {
         }/?${searchParams.toString()}&page=${index}&pageSize=${10}`
       )
       .then((res) => {
-        setItems((prevItems) => [...prevItems, ...res.data.products]);
+        setItems((prevItems) => [...prevItems, ...res?.data?.data]);
       })
       .catch((err) => console.log(err));
     setIndex((prevIndex) => prevIndex + 1);
@@ -51,6 +52,7 @@ const ProductList = () => {
   }, [index, isLoading]);
 
   const getData = async () => {
+    
     setIsLoading(true);
     try {
       const response = await axios.get(
@@ -58,8 +60,8 @@ const ProductList = () => {
           params.categoryName
         }/?${searchParams.toString()}&page=${1}&pageSize=${10}`
       );
-  
-      setItems(response.data.products);
+   
+      setItems(response.data.data);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
