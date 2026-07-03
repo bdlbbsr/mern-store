@@ -18,7 +18,6 @@ import Loader from "../../Components/Loader/Loader";
 import useFetch from "../../Services/useFetch";
 import styles from "./productdetail.scss";
 import ProductSlider from "../../Components/Slider/ProductSlider";
-import SimilarProducts from "../../Components/Slider/SimilarProducts";
 import ErrorPage from "../ErrorPage/ErrorPage"
  
 
