@@ -128,12 +128,7 @@ const ProductDetail = () => {
           </button>
         </Col>
       </Row>
-      <Row>
-        <Col className='productSliderWrapper'>
-          <h4 className="py-2">Simlar Products</h4>
-          <SimilarProducts category={data?.category} />
-        </Col>
-      </Row>
+      
     </Container>
   );
 };

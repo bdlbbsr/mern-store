@@ -58,7 +58,7 @@ const ProductList = () => {
           params.categoryName
         }/?${searchParams.toString()}&page=${1}&pageSize=${10}`
       );
-      console.log("load", response.data.products);
+  
       setItems(response.data.products);
       setIsLoading(false);
     } catch (error) {
