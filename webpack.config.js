@@ -6,6 +6,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = (env) => {
   const isProduction = env.NODE_ENV === 'production';
@@ -24,17 +25,16 @@ module.exports = (env) => {
       maxEntrypointSize: 512000,
       maxAssetSize: 512000,
     },
-    
-  
+
+
     plugins: [
       new webpack.DefinePlugin({
         'process.env': JSON.stringify(envVars),
       }),
       new HtmlWebpackPlugin({
-        //template: path.join(__dirname, "src", "index.html"), // to import index.html file inside index.js
         template: path.join(__dirname, "public", "index.html"),
         favicon: path.join(__dirname, "public", "favicon.ico"),
-        manifest: path.join(__dirname, "public", "manifest.json"),
+
         filename: 'index.html',
         minify: {
           removeComments: true,
@@ -49,16 +49,25 @@ module.exports = (env) => {
         },
         // chunksSortMode: "auto",
       }),
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: "public/manifest.json", to: "manifest.json" },
+          { from: "public/logo192.png", to: "logo192.png" },
+          { from: "public/logo512.png", to: "logo512.png" },
+        ],
+      }),
       new webpack.HotModuleReplacementPlugin(),
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin(),
       new RemoveEmptyScriptsPlugin(),
-  
+
     ],
     optimization: {
       minimize: true,
-      minimizer: [new CssMinimizerPlugin()],
-      minimizer: [new TerserPlugin()],
+      minimizer: [
+        new CssMinimizerPlugin(),
+        new TerserPlugin(),
+      ],
     },
     devServer: {
       static: {
@@ -67,10 +76,10 @@ module.exports = (env) => {
       compress: true,
       open: true,
       port: 3000,
-      host:'0.0.0.0',
+      host: '0.0.0.0',
       historyApiFallback: true,
-     
-  
+
+
     },
     module: {
       rules: [
@@ -88,7 +97,7 @@ module.exports = (env) => {
           test: /\.(sa|sc|c)ss$/, // styles files
           use: [MiniCssExtractPlugin.loader, 'css-loader', "sass-loader"],
         },
-        
+
         {
           test: /\.(png|jpg|gif|svg)$/,
           type: "asset/resource",
@@ -103,8 +112,8 @@ module.exports = (env) => {
       extensions: [".js", ".jsx"],
     },
     mode: "production",
-     
-}
+
+  }
 };
 
 
