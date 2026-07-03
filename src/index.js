@@ -12,7 +12,7 @@ import { store } from "./Redux/store";
 
 import { QueryClientProvider } from '@tanstack/react-query';
 import queryClient from './queryClient';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+// import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -29,4 +29,4 @@ root.render(
   </React.StrictMode>
 );
 
-serviceWorkerRegistration.register();
+// serviceWorkerRegistration.register();
